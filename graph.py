@@ -65,11 +65,12 @@ class ShortestPath:
 
 
 graph = WeightedGraph()
+
 nodes = ["Ntcheu", "Dedza", "Lilongwe", "Salima", "Dowa", "Ntchisi", "Kasungu", "Mchinji", "Nkhotakota"]
 edges = [("Ntcheu", "Dedza", 74), ("Dedza", "Lilongwe", 92), ("Dedza", "Salima", 96),
          ("Salima", "Nkhotakota", 112), ("Salima", "Dowa", 67), ("Dowa", "Lilongwe", 55),
          ("Dowa", "Ntchisi", 38), ("Dowa", "Kasungu", 117), ("Ntchisi", "Nkhotakota", 66),
-         ("Kasungu", "Mchinji", 141), ("Mchinji", "Lilongwe", 109)]
+         ("Kasungu", "Mchinji", 141), ("Mchinji", "Lilongwe", 109), ("Ntchisi", "Kasungu", 66),]
 
 for node in nodes:
     graph.add_node(node)
