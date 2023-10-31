@@ -1,6 +1,6 @@
 import heapq
 
-
+# Node in a graph
 class Node:
     def __init__(self, name):
         self.name = name
@@ -9,7 +9,7 @@ class Node:
     def add_neighbor(self, neighbor, weight):
         self.neighbors[neighbor] = weight
 
-
+# Weighted graph
 class WeightedGraph:
     def __init__(self):
         self.nodes = {}
@@ -26,18 +26,21 @@ class WeightedGraph:
         self.nodes[node1].add_neighbor(node2, weight)
         self.nodes[node2].add_neighbor(node1, weight)
 
-    def shortest_path(self, start, end):
+# finding the shortest path using Dijkstra's algorithm
+class ShortestPath:
+    def __init__(self, graph):
+        self.graph = graph
 
-        if start not in self.nodes:
+    def find(self, start, end):
+        if start not in self.graph.nodes:
             return f"Start node {start} does not exist in the graph.", None
-        if end not in self.nodes:
+        if end not in self.graph.nodes:
             return f"End node {end} does not exist in the graph.", None
-    
-        queue = [(0, start)]
 
-        distances = {node: float('infinity') for node in self.nodes}
+        queue = [(0, start)]
+        distances = {node: float('infinity') for node in self.graph.nodes}
         distances[start] = 0
-        previous_nodes = {node: None for node in self.nodes}
+        previous_nodes = {node: None for node in self.graph.nodes}
 
         while queue:
             current_distance, current_node = heapq.heappop(queue)
@@ -45,7 +48,7 @@ class WeightedGraph:
             if distances[current_node] < current_distance:
                 continue
 
-            for neighbor, weight in self.nodes[current_node].neighbors.items():
+            for neighbor, weight in self.graph.nodes[current_node].neighbors.items():
                 distance = current_distance + weight
                 if distance < distances[neighbor]:
                     distances[neighbor] = distance
@@ -73,7 +76,8 @@ for node in nodes:
 for edge in edges:
     graph.add_edge(*edge)
 
-path, distance = graph.shortest_path("Ntcheu", "Kasungu")
+shortest_path = ShortestPath(graph)
+path, distance = shortest_path.find("Ntcheu", "Kasungu")
 print(f"The shortest path and distance from Ntcheu to Kasungu is:")
 print(f"Shortest path: {path}")
 print(f"Distance: {distance}")
