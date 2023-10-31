@@ -77,8 +77,11 @@ for node in nodes:
 for edge in edges:
     graph.add_edge(*edge)
 
+start_node = input("Enter the start node: ")
+end_node = input("Enter the end node: ")
+
 shortest_path = ShortestPath(graph)
-path, distance = shortest_path.find("Ntcheu", "Kasungu")
-print(f"The shortest path and distance from Ntcheu to Kasungu is:")
+path, distance = shortest_path.find(start_node, end_node)
+print(f"The shortest path and distance from {start_node} to {end_node} is:")
 print(f"Shortest path: {path}")
 print(f"Distance: {distance}")
